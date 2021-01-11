@@ -5,6 +5,7 @@ content/backup-db/
 content/backups/
 content/blogs.dir/
 content/cache/
+content/languages/
 content/index.php
 content/upgrade/
 content/uploads/
@@ -16,7 +17,6 @@ db.php
 plugins/
 xmlrpc.php
 ruby/
-
 
 wp-activate.php
 wp-admin/
@@ -58,5 +58,3 @@ ehthumbs.db
 Thumbs.db
 scripts.js.tmp-browserify-*
 .sass-cache
-
-

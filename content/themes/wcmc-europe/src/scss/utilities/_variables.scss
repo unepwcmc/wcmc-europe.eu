@@ -1,0 +1,84 @@
+//-------------------------------------------------
+// GLOBAL
+//-------------------------------------------------
+
+$global-inner: 1160px;
+$grid-gap: 15px;
+$gutter: 100px;
+$restrained-width: #{$global-inner / 2};
+
+$listing-gap: 21px;
+
+$item-padding-smaller: 5px;
+$item-padding-small: 10px;
+$item-padding: 15px;
+
+$spacer-small: 25px;
+$spacer-medium: 40px;
+$spacer-large: 80px;
+$spacer-xlarge: 120px;
+
+//-------------------------------------------------
+// WORDPRESS
+//-------------------------------------------------
+
+$admin-bar-mobile: 46px;
+$admin-bar: 32px;
+
+//-------------------------------------------------
+// FONTS
+//-------------------------------------------------
+
+$font-heading: 'Roboto', sans-serif;
+$font-body: 'Roboto', sans-serif;
+$font-base-size: 16px;
+$font-base-line-height: 24px;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+$fw-black: 900;
+
+//-------------------------------------------------
+// COLOURS
+//-------------------------------------------------
+
+$color-primary: #2775BB;
+$color-secondary: #231F20;
+
+// To Delete?
+$color-primary-light: #66BD60;
+$color-primary-dark: #163B18;
+
+$color-dark-grey: #383838;
+$color-mid-grey: #E5E5E5;
+$color-light-grey: #F2F2F2;
+$color-white: #ffffff;
+
+$color-border: rgba($color-secondary,0.25);
+$color-border-light: rgba(255,255,255,0.25);
+$color-error: #dc3232;
+$color-grey-text: #8D8D8D;
+$color-accent: #FAC359;
+$color-accent-dark: #F89C1B;
+$color-link: #4968b3;
+$color-body-font: #0e0e0e;
+$color-headings: $color-body-font;
+$color-tools-icons: #606060;
+
+$color-header: $color-white;
+$color-background: $color-white;
+$color-footer: $color-white;
+
+//-------------------------------------------------
+// BREAKPOINTS
+//-------------------------------------------------
+
+$xxs: 451px;
+$xs: 600px;
+$sm: 768px;
+$md: 900px;
+$lg: 1280px;
+$xlg: 1440px;
