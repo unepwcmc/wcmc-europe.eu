@@ -10,7 +10,7 @@
   $text = block_field( 'text', false );
   $dark_text = block_field( 'dark-text', false );
 
-  $image = block_field( 'image', false );
+  $image = block_field( 'background-image', false );
   $image_url = wp_get_attachment_image_src( $image, 'full-size' )[0];
 
   $overlay_opacity = block_field( 'overlay-opacity', false );
@@ -23,10 +23,10 @@
         <h2 class="home-hero__title"><?php echo $title; ?></h2>
         <div class="home-hero__text"><?php echo $text; ?></div>
       </div>
-      <?php if ($image_url): ?>
-        <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>" class="home-hero__background-image">
-      <?php endif; ?>
-      <div class="home-hero__overlay" style="opacity: <?php echo $overlay_opacity; ?>"
     </div>
   </div>
+  <?php if ($image_url): ?>
+    <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>" class="home-hero__background-image">
+  <?php endif; ?>
+  <div class="home-hero__overlay" style="opacity: <?php echo $overlay_opacity; ?>;"></div>
 </div>

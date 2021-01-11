@@ -93,6 +93,16 @@ function custom_styles(){
 add_action( 'wp_enqueue_scripts', 'custom_styles' );
 
 /*-------------------------------------------------------------------------------------------------
+LOAD BLOCK EDITOR STYLES
+------------------------------------------------------------------------------------------------- */
+
+function custom_block_editor_styles(){
+    wp_enqueue_style( 'main_css', get_stylesheet_directory_uri() . "/dist/build/css/main.css", false, '1.0', 'all' );
+}
+
+add_action( 'enqueue_block_editor_assets', 'custom_block_editor_styles' );
+
+/*-------------------------------------------------------------------------------------------------
 LOAD JS
 ------------------------------------------------------------------------------------------------- */
 
