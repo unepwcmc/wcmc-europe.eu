@@ -1,1 +1,36 @@
+/******************************
+  # WCMC-Europe - Headless
+  # WordPress Gutenberg Theme
+  # Created by UNEP-WCMC
+  # http://unep-wcmc.org
+******************************/
+
+// Utilities
+
+@import "utilities/variables";
+@import "utilities/mixins";
+// @import "utilities/reset";
+@import "utilities/utilities";
+
+// Base
+
+@import "base/typography";
+// @import "base/base";
+
 // Gutenberg Block Editor Style Overrides
+
+.block-editor .editor-styles-wrapper {
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #1e1e1e;
+  padding: 10px;
+
+  h1,h2,h3,h4,h5,h6 {
+    @include heading;
+  }
+
+  p, a {
+    @include font_base_text;
+  }
+}

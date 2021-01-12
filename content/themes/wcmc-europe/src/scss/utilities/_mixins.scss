@@ -145,9 +145,10 @@
 //-------------------------------------------------
 
 @mixin heading {
-  font-family: $font-heading;
   color: $color-headings;
+  font-family: $font-heading;
   margin-bottom: $item-padding;
+  letter-spacing: 0.5px;
 }
 
 @mixin font_heading-1 {

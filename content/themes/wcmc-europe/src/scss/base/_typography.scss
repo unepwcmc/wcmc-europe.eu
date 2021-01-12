@@ -1,0 +1,92 @@
+/*-------------------------------------------------------------------------------------------------
+TYPOGRAPHY
+------------------------------------------------------------------------------------------------- */
+
+.editor-block-list__layout .wp-block-heading,
+.lyt-Body {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include heading;
+  }
+
+  h1.paragraph,
+  h2.paragraph,
+  h3.paragraph,
+  h4.paragraph,
+  h5.paragraph,
+  h6.paragraph {
+    @include paragraph;
+  }
+
+  h1 {
+    @include h1;
+  }
+
+  h2 {
+    @include h2;
+  }
+
+  h3 {
+    @include h3;
+  }
+
+  h4 {
+    @include h4;
+  }
+
+  h5 {
+    @include h5;
+  }
+
+  h6 {
+    @include h6;
+  }
+}
+
+.editor-block-list__layout,
+.lyt-Body {
+  a {
+    color: inherit;
+    position: relative;
+    text-decoration: underline;
+  }
+
+  p {
+    @include paragraph;
+
+    & a {
+      color: $color-primary;
+    }
+
+    &.has-text-color a {
+      color: inherit;
+    }
+
+    &.restricted {
+      max-width: calc((6 / 12) * 100%);
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  s {
+    text-decoration: none;
+    vertical-align: super;
+    font-size: smaller;
+  }
+
+  a,
+  p {
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  em {
+    font-style: italic !important;
+  }
+}

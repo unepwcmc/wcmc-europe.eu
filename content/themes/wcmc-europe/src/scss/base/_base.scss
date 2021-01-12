@@ -1,0 +1,230 @@
+/*--------------------------------------------------------------
+BASE
+--------------------------------------------------------------*/
+
+body {
+  @include font_base_text;
+  background-color: $color-secondary;
+  color: $color-body-font;
+  font-family: $font-body;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.loaded {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.utl-DrawerActive {
+    overflow: hidden;
+
+    &.utl-iOS {
+      position: fixed;
+    }
+  }
+
+  &.lyt-Body--modalActive {
+    position: fixed;
+    right: 0;
+    left: 0;
+  }
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+strong {
+  font-weight: 700;
+}
+
+img {
+  max-width: 100%;
+}
+
+figcaption,
+.wp-block-image figcaption {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 12px;
+  color: $color-grey-text;
+}
+
+ol, ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+li {
+  color: inherit;
+  list-style: disc outside none;
+}
+
+.editor-block-list__layout,
+.ent-Entry_Content,
+.lyt-Sidebar {
+  ul {
+    margin-left: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+pre {
+  white-space: inherit;
+}
+
+/*--------------------------------------------------------------
+FORMS
+--------------------------------------------------------------*/
+
+label {
+  font-size: inherit;
+}
+
+fieldset {
+  margin-bottom: 1em;
+}
+
+input,
+textarea {
+  @include font_small_text;
+  background-color: $color-white;
+  border: 1px solid $color-secondary;
+  border-radius: 3px;
+  color: $color-secondary;
+  font-family: $font-body;
+  font-weight: 600;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+
+  display: block;
+
+  transition: color 0.3s ease;
+
+  &::placeholder {
+    font-family: $font-body;
+    color: inherit;
+    font-weight: 400;
+    color: $color-grey-text;
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+}
+
+input[type="submit"] {
+  @include button_primary;
+  @include button_wider;
+}
+
+select {
+  @include font_small_text;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid $color-secondary;
+  max-width: 100%;
+  font-family: $font-body;
+  margin: 0;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #fff;
+  background-image: url("../img/icon-angle-down-secondary.svg");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: auto 7px, 100%;
+}
+
+input[type="date"] {
+  padding: 0.85em;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+::-webkit-input-placeholder {
+  color: lighten($color-body-font, 10%);
+}
+:-moz-placeholder {
+  color: lighten($color-body-font, 10%);
+}
+::-moz-placeholder {
+  color: lighten($color-body-font, 10%);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: lighten($color-body-font, 10%);
+}
+
+/*--------------------------------------------------------------
+TABLES
+--------------------------------------------------------------*/
+
+table {
+  border-collapse: collapse;
+  margin: 0 0 1.5em;
+  width: 100%;
+}
+
+th {
+  padding: 0.4em;
+  text-align: left;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  thead & {
+    border-bottom: 2px solid #bbb;
+    padding-bottom: 0.5em;
+  }
+}
+
+tr {
+  border-bottom: 1px solid #eee;
+}
+
+td {
+  padding: 0.4em;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+// Flickity
+
+.lyt-Body .flickity-page-dots {
+  bottom: 0;
+}

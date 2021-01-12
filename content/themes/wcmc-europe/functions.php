@@ -244,7 +244,7 @@ function remove_customize_theme_options($wp_customize)
   $wp_customize->remove_section('colors');
   $wp_customize->remove_section('header_image');
   $wp_customize->remove_section('background_image');
-  $wp_customize->remove_panel('nav_menus');
+  // $wp_customize->remove_panel('nav_menus');
   $wp_customize->remove_section('static_front_page');
   $wp_customize->remove_section('custom_css');
 }
@@ -270,3 +270,31 @@ add_filter('rest_url', function ($url) {
   $url = str_replace(home_url(), site_url(), $url);
   return $url;
 });
+
+
+// Return Gutenberg Blocks as JSON over WP REST API
+add_action(
+	'rest_api_init',
+	function () {
+
+		if ( ! function_exists( 'use_block_editor_for_post_type' ) ) {
+			require ABSPATH . 'wp-admin/includes/post.php';
+		}
+
+		// Surface all Gutenberg blocks in the WordPress REST API
+		$post_types = get_post_types_by_support( [ 'editor' ] );
+		foreach ( $post_types as $post_type ) {
+			if ( use_block_editor_for_post_type( $post_type ) ) {
+				register_rest_field(
+					$post_type,
+					'blocks',
+					[
+						'get_callback' => function ( array $post ) {
+							return parse_blocks( $post['content']['raw'] );
+						},
+					]
+				);
+			}
+		}
+	}
+);

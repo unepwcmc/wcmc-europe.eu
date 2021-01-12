@@ -43,8 +43,9 @@
 }
 
 .home-hero__title,
-.editor-styles-wrapper .home-hero__title {
-  color: currentColor;
+.block-editor .editor-styles-wrapper .home-hero__title {
+  @include heading;
+  color: $color-white;
   margin: 0 auto $item-padding * 2;
   text-transform: uppercase;
 }
