@@ -56,7 +56,7 @@ if (! function_exists('custom_setup')){
 		add_theme_support('automatic-feed-links');
 
 		// This theme uses wp_nav_menu() in one location.
-		register_nav_menu('primary', __('Primary Menu', 'custom'));
+		register_nav_menu('main', __('Primary Menu', 'custom'));
 		register_nav_menu('mobile', __('Mobile Menu', 'custom'));
 		register_nav_menu('footer', __('Footer Menu', 'custom'));
 		register_nav_menu('social', __('Social Menu', 'custom'));
