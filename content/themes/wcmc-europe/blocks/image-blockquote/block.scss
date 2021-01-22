@@ -21,13 +21,12 @@
 
 h4.image-blockquote_text,
 .editor-styles-wrapper h4.image-blockquote_text {
+  color: $color-white;
   font-size: 40px;
   line-height: 46px;
   margin: 0 auto;
 
   @include break-min($sm) {
-    font-size: 70px;
-    line-height: 86px;
     max-width: calc((8 / 12) * 100%);
   }
 }
