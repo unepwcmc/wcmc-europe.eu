@@ -8,7 +8,7 @@
   // Variables
   $text = block_field( 'text', false );
 
-  $overlay_opacity = block_field( 'over-opacity', false );
+  $overlay_opacity = block_field( 'overlay-opacity', false );
 
   $image = block_field( 'background-image', false );
   $image_url = wp_get_attachment_image_src( $image, 'full-size' )[0];
