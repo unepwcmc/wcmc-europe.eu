@@ -282,6 +282,7 @@ add_action(
 		}
 
 		// Surface all Gutenberg blocks in the WordPress REST API
+		// https://wpscholar.com/blog/add-gutenberg-blocks-to-wp-rest-api/
 		$post_types = get_post_types_by_support( [ 'editor' ] );
 		foreach ( $post_types as $post_type ) {
 			if ( use_block_editor_for_post_type( $post_type ) ) {
