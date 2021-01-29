@@ -4,7 +4,8 @@
 Remove About Us
 ------------------------------------------------------------------------------------------------- */
 
-function change_toolbar($wp_toolbar) {
+function change_toolbar($wp_toolbar)
+{
 	$wp_toolbar->remove_node('wp-logo');
 }
 add_action('admin_bar_menu', 'change_toolbar', 999);
@@ -13,9 +14,10 @@ add_action('admin_bar_menu', 'change_toolbar', 999);
   Remove Categories and Tags from default WP Posts
 ------------------------------------------------------------------------------------------------- */
 
-function myprefix_remove_tax() {
-    register_taxonomy('post_tag', array());
-    register_taxonomy('post_format', array());
+function myprefix_remove_tax()
+{
+	register_taxonomy('post_tag', array());
+	register_taxonomy('post_format', array());
 }
 add_action('init', 'myprefix_remove_tax');
 
@@ -24,8 +26,8 @@ Gutenberg Colour Pallet
 -------------------------------------------------------------------------------*/
 
 // -- Disable Colors
-add_theme_support( 'editor-color-palette', array() );
-add_theme_support( 'disable-custom-colors' );
+add_theme_support('editor-color-palette', array());
+add_theme_support('disable-custom-colors');
 
 
 /*-------------------------------------------------------------------------------------------------
@@ -43,9 +45,10 @@ SETUP THEME
 add_action('after_setup_theme', 'custom_setup');
 
 
-if (! function_exists('custom_setup')){
+if (!function_exists('custom_setup')) {
 
-	function custom_setup() {
+	function custom_setup()
+	{
 
 		global $wp_version, $wpdb;
 
@@ -71,9 +74,9 @@ if (! function_exists('custom_setup')){
 		add_image_size('featured-portrait', 350, 500, true); // Featured Image
 
 		// Disable default gallery css styles
-		add_filter( 'use_default_gallery_style', '__return_false' );
+		add_filter('use_default_gallery_style', '__return_false');
 
-		if (!is_admin()){
+		if (!is_admin()) {
 			add_action('wp_enqueue_scripts', 'custom_load_js');
 		}
 	}
@@ -83,35 +86,38 @@ if (! function_exists('custom_setup')){
 LOAD STYLES
 ------------------------------------------------------------------------------------------------- */
 
-function custom_styles(){
-    wp_enqueue_style( 'google_fonts', 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' );
-    wp_enqueue_style( 'flickity', 'https://unpkg.com/flickity@2/dist/flickity.min.css' );
-    wp_enqueue_style( 'main_css', get_stylesheet_directory_uri() . '/dist/build/css/main.css' );
-    wp_enqueue_style( 'ie_css', get_stylesheet_directory_uri() . '/dist/build/css/ie.css' );
+function custom_styles()
+{
+	wp_enqueue_style('google_fonts', 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+	wp_enqueue_style('flickity', 'https://unpkg.com/flickity@2/dist/flickity.min.css');
+	wp_enqueue_style('main_css', get_stylesheet_directory_uri() . '/dist/build/css/main.css');
+	wp_enqueue_style('ie_css', get_stylesheet_directory_uri() . '/dist/build/css/ie.css');
 }
 
-add_action( 'wp_enqueue_scripts', 'custom_styles' );
+add_action('wp_enqueue_scripts', 'custom_styles');
 
 /*-------------------------------------------------------------------------------------------------
 LOAD BLOCK EDITOR STYLES
 ------------------------------------------------------------------------------------------------- */
 
-function custom_block_editor_styles(){
-    wp_enqueue_style( 'main_css', get_stylesheet_directory_uri() . "/dist/build/css/main.css", false, '1.0', 'all' );
+function custom_block_editor_styles()
+{
+	wp_enqueue_style('main_css', get_stylesheet_directory_uri() . "/dist/build/css/main.css", false, '1.0', 'all');
 }
 
-add_action( 'enqueue_block_editor_assets', 'custom_block_editor_styles' );
+add_action('enqueue_block_editor_assets', 'custom_block_editor_styles');
 
 /*-------------------------------------------------------------------------------------------------
 LOAD JS
 ------------------------------------------------------------------------------------------------- */
 
-function custom_load_js(){
+function custom_load_js()
+{
 	// Enqueue Javascript
-	if(!is_admin()) {
-    wp_enqueue_script( 'polyfill_js', 'https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise,fetch,Symbol,Array.prototype.@@iterator,Element.prototype.classList,Object.values,Object.entries,IntersectionObserver', '', '', true );
-    wp_enqueue_script( 'vendor_js', get_template_directory_uri() . '/dist/build/js/vendor.js', '', '', true );
-    wp_enqueue_script( 'theme_js', get_template_directory_uri() . '/dist/build/js/app.js', array('vendor_js'), '', true );
+	if (!is_admin()) {
+		wp_enqueue_script('polyfill_js', 'https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise,fetch,Symbol,Array.prototype.@@iterator,Element.prototype.classList,Object.values,Object.entries,IntersectionObserver', '', '', true);
+		wp_enqueue_script('vendor_js', get_template_directory_uri() . '/dist/build/js/vendor.js', '', '', true);
+		wp_enqueue_script('theme_js', get_template_directory_uri() . '/dist/build/js/app.js', array('vendor_js'), '', true);
 	}
 }
 
@@ -119,7 +125,8 @@ function custom_load_js(){
 SIDEBARS
 ------------------------------------------------------------------------------------------------- */
 
-function custom_register_sidebar() {
+function custom_register_sidebar()
+{
 
 	register_sidebar(array(
 		'name' => __('Sidebar', 'custom'),
@@ -165,72 +172,73 @@ ADD SUB PAGES
 -------------------------------------------------------------------------------*/
 
 // add hook
-add_filter( 'wp_nav_menu_objects', 'my_wp_nav_menu_objects_sub_menu', 10, 2 );
+add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects_sub_menu', 10, 2);
 
 // filter_hook function to react on sub_menu flag
-function my_wp_nav_menu_objects_sub_menu( $sorted_menu_items, $args ) {
-  if ( isset( $args->sub_menu ) ) {
-	$root_id = 0;
-	// find the current menu item
-	foreach ( $sorted_menu_items as $menu_item ) {
-	  if ( $menu_item->current ) {
-		// set the root id based on whether the current menu item has a parent or not
-	  $root_id = ( $menu_item->menu_item_parent ) ? $menu_item->menu_item_parent : $menu_item->ID;
-	  break;
-	}
-  }
-  // find the top level parent
-  if ( ! isset( $args->direct_parent ) ) {
-	$prev_root_id = $root_id;
-	while ( $prev_root_id != 0 ) {
-	  foreach ( $sorted_menu_items as $menu_item ) {
-		if ( $menu_item->ID == $prev_root_id ) {
-		  $prev_root_id = $menu_item->menu_item_parent;
-		  // don't set the root_id to 0 if we've reached the top of the menu
-		  if ( $prev_root_id != 0 ) $root_id = $menu_item->menu_item_parent;
-			break;
-		  }
+function my_wp_nav_menu_objects_sub_menu($sorted_menu_items, $args)
+{
+	if (isset($args->sub_menu)) {
+		$root_id = 0;
+		// find the current menu item
+		foreach ($sorted_menu_items as $menu_item) {
+			if ($menu_item->current) {
+				// set the root id based on whether the current menu item has a parent or not
+				$root_id = ($menu_item->menu_item_parent) ? $menu_item->menu_item_parent : $menu_item->ID;
+				break;
+			}
 		}
-	  }
-	}
-	$menu_item_parents = array();
-	foreach ( $sorted_menu_items as $key => $item ) {
-	  // init menu_item_parents
-	  if ( $item->ID == $root_id ) $menu_item_parents[] = $item->ID;
+		// find the top level parent
+		if (!isset($args->direct_parent)) {
+			$prev_root_id = $root_id;
+			while ($prev_root_id != 0) {
+				foreach ($sorted_menu_items as $menu_item) {
+					if ($menu_item->ID == $prev_root_id) {
+						$prev_root_id = $menu_item->menu_item_parent;
+						// don't set the root_id to 0 if we've reached the top of the menu
+						if ($prev_root_id != 0) $root_id = $menu_item->menu_item_parent;
+						break;
+					}
+				}
+			}
+		}
+		$menu_item_parents = array();
+		foreach ($sorted_menu_items as $key => $item) {
+			// init menu_item_parents
+			if ($item->ID == $root_id) $menu_item_parents[] = $item->ID;
 
-	  if ( in_array( $item->menu_item_parent, $menu_item_parents ) ) {
-	  // part of sub-tree: keep!
-		$menu_item_parents[] = $item->ID;
-	  } else if ( ! ( isset( $args->show_parent ) && in_array( $item->ID, $menu_item_parents ) ) ) {
-	  // not part of sub-tree: away with it!
-	  unset( $sorted_menu_items[$key] );
+			if (in_array($item->menu_item_parent, $menu_item_parents)) {
+				// part of sub-tree: keep!
+				$menu_item_parents[] = $item->ID;
+			} else if (!(isset($args->show_parent) && in_array($item->ID, $menu_item_parents))) {
+				// not part of sub-tree: away with it!
+				unset($sorted_menu_items[$key]);
+			}
+		}
+		return $sorted_menu_items;
+	} else {
+		return $sorted_menu_items;
 	}
-  }
-return $sorted_menu_items;
-} else {
-  return $sorted_menu_items;
-}
 }
 
 // Enable shortcodes in text widgets
-add_filter('widget_text','do_shortcode');
+add_filter('widget_text', 'do_shortcode');
 
 // Nuepress functions
 
 // Added to end of the post excerpt if longer than 55 words
 function new_excerpt_more($more)
 {
-  return '…';
+	return '…';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
 // Increase max page limit
 function increase_per_page_limit($params)
 {
-  if (isset($params['per_page'])) {
-    $params['per_page']['maximum'] = 1000000;
-  }
-  return $params;
+	if (isset($params['per_page'])) {
+		$params['per_page']['maximum'] = 1000000;
+	}
+	return $params;
 }
 
 add_filter('rest_post_collection_params', 'increase_per_page_limit', 10, 2);
@@ -241,34 +249,34 @@ add_filter('rest_user_collection_params', 'increase_per_page_limit', 10, 2);
 // Hide customize theme options
 function remove_customize_theme_options($wp_customize)
 {
-  $wp_customize->remove_section('colors');
-  $wp_customize->remove_section('header_image');
-  $wp_customize->remove_section('background_image');
-  // $wp_customize->remove_panel('nav_menus');
-  $wp_customize->remove_section('static_front_page');
-  $wp_customize->remove_section('custom_css');
+	$wp_customize->remove_section('colors');
+	$wp_customize->remove_section('header_image');
+	$wp_customize->remove_section('background_image');
+	// $wp_customize->remove_panel('nav_menus');
+	$wp_customize->remove_section('static_front_page');
+	$wp_customize->remove_section('custom_css');
 }
 add_action('customize_register', 'remove_customize_theme_options', 50);
 
 // Remove comments from admin
 function my_remove_admin_menus()
 {
-  remove_menu_page('edit-comments.php');
+	remove_menu_page('edit-comments.php');
 }
 add_action('admin_menu', 'my_remove_admin_menus');
 
 // Removes comment from admin bar
 function mytheme_admin_bar_render()
 {
-  global $wp_admin_bar;
-  $wp_admin_bar->remove_menu('comments');
+	global $wp_admin_bar;
+	$wp_admin_bar->remove_menu('comments');
 }
 add_action('wp_before_admin_bar_render', 'mytheme_admin_bar_render');
 
 // https://github.com/WordPress/gutenberg/issues/1761#issuecomment-412876340
 add_filter('rest_url', function ($url) {
-  $url = str_replace(home_url(), site_url(), $url);
-  return $url;
+	$url = str_replace(home_url(), site_url(), $url);
+	return $url;
 });
 
 
@@ -277,21 +285,21 @@ add_action(
 	'rest_api_init',
 	function () {
 
-		if ( ! function_exists( 'use_block_editor_for_post_type' ) ) {
+		if (!function_exists('use_block_editor_for_post_type')) {
 			require ABSPATH . 'wp-admin/includes/post.php';
 		}
 
 		// Surface all Gutenberg blocks in the WordPress REST API
 		// https://wpscholar.com/blog/add-gutenberg-blocks-to-wp-rest-api/
-		$post_types = get_post_types_by_support( [ 'editor' ] );
-		foreach ( $post_types as $post_type ) {
-			if ( use_block_editor_for_post_type( $post_type ) ) {
+		$post_types = get_post_types_by_support(['editor']);
+		foreach ($post_types as $post_type) {
+			if (use_block_editor_for_post_type($post_type)) {
 				register_rest_field(
 					$post_type,
 					'blocks',
 					[
-						'get_callback' => function ( array $post ) {
-							return parse_blocks( $post['content']['raw'] );
+						'get_callback' => function (array $post) {
+							return parse_blocks($post['content']['raw']);
 						},
 					]
 				);
@@ -305,4 +313,4 @@ add_action(
 IMPORT ACF OPTIONS PAGE SETTINGS
 ------------------------------------------------------------------------------------------------- */
 
-require_once( 'acf-options-page.php' );
+require_once('acf-options-page.php');

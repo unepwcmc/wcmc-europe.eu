@@ -1,5 +1,6 @@
-namespace :db do
+# frozen_string_literal: true
 
+namespace :db do
   ##############################################################################
   ## Create a sensible backup name for SQL files
   ##############################################################################
@@ -7,7 +8,6 @@ namespace :db do
   desc 'Create a sensible backup name for SQL files'
   task :backup_name do
     on roles(:web) do
-
       # Make a new directory in your shared folder
       execute :mkdir, "-p #{shared_path}/db_backups"
 
@@ -22,7 +22,6 @@ namespace :db do
     end
   end
 
-
   ##############################################################################
   ## Confirm a database action before proceeding
   ##############################################################################
@@ -30,7 +29,6 @@ namespace :db do
   desc 'Confirms the database action before proceeeding'
   task :confirm do
     on roles(:web) do
-
       # Load the database details
       database = YAML.load_file('config/database.yml')[fetch(:stage).to_s]
 
@@ -85,7 +83,6 @@ namespace :db do
     end
   end
 
-
   ##############################################################################
   ## Take a database dump from remote server
   ##############################################################################
@@ -99,14 +96,13 @@ namespace :db do
       end
 
       system('mkdir -p db_backups')
-      download! "#{fetch(:backup_file)}", "db_backups/#{fetch(:backup_filename)}.sql.gz"
+      download! fetch(:backup_file).to_s, "db_backups/#{fetch(:backup_filename)}.sql.gz"
 
       within release_path do
-        execute :rm, "#{fetch(:backup_file)}"
+        execute :rm, fetch(:backup_file).to_s
       end
     end
   end
-
 
   ##############################################################################
   ## Imports the remote database to your local environment
@@ -126,7 +122,6 @@ namespace :db do
     end
   end
 
-
   ##############################################################################
   ## Import the local database to your remote environment
   ##############################################################################
@@ -142,12 +137,12 @@ namespace :db do
         execute :wp, "db export - | gzip > db_backups/#{fetch(:backup_filename)}.sql.gz"
       end
 
-      upload! "db_backups/#{fetch(:backup_filename)}.sql.gz", "#{fetch(:backup_file)}"
+      upload! "db_backups/#{fetch(:backup_filename)}.sql.gz", fetch(:backup_file).to_s
 
       within release_path do
         execute :gzip, "-c -d #{fetch(:backup_file)} | wp db import -"
         execute :wp, "search-replace #{fetch(:wp_localurl)} #{fetch(:stage_url)}"
-        execute :rm, "#{fetch(:backup_file)}"
+        execute :rm, fetch(:backup_file).to_s
       end
 
       run_locally do
@@ -156,5 +151,4 @@ namespace :db do
       end
     end
   end
-
 end

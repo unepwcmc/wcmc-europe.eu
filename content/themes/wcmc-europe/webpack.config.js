@@ -1,8 +1,8 @@
 const devMode = process.env.NODE_ENV !== "production"
 const path = require("path"),
-      { VueLoaderPlugin } = require('vue-loader'),
-      { HotModuleReplacementPlugin } = require('webpack'),
-      Dotenv = require('dotenv-webpack')
+  { VueLoaderPlugin } = require('vue-loader'),
+  { HotModuleReplacementPlugin } = require('webpack'),
+  Dotenv = require('dotenv-webpack')
 
 module.exports = {
   mode: devMode ? "development" : "production",
@@ -11,10 +11,10 @@ module.exports = {
     vendor: ['vue', './src/js/vendor.js']
   },
   output: {
-		filename: '[name].js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist/build/js'),
     publicPath: './dist/build/'
-	},
+  },
   plugins: [
     new Dotenv(),
     new HotModuleReplacementPlugin(),
@@ -23,14 +23,14 @@ module.exports = {
   module: {
     rules: [
       {
-				test: /\.js$/,
-				exclude: /(node_modules)/,
-				loader: 'babel-loader',
-			},
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+      },
       {
-				test: /\.vue$/,
-				loader: 'vue-loader',
-			},
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
       {
         test: /\.(svg|png|jpg|gif)$/,
         use: {

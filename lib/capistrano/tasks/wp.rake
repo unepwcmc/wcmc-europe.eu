@@ -1,5 +1,6 @@
-namespace :wp do
+# frozen_string_literal: true
 
+namespace :wp do
   ##############################################################################
   ## Set the necessary file permissions
   ##############################################################################
@@ -9,7 +10,7 @@ namespace :wp do
     on roles(:app) do
       # Get the server web user
       web_user = fetch(:web_user)
-      
+
       execute :chmod, "664 #{shared_path}/.htaccess"
       execute :chmod, "-R 775 #{shared_path}/content/uploads"
       execute :chown, ":#{web_user} #{shared_path}/content/uploads"
@@ -17,7 +18,6 @@ namespace :wp do
   end
 
   namespace :setup do
-
     ############################################################################
     ## Generate template files
     ############################################################################
@@ -53,7 +53,6 @@ namespace :wp do
       # Set some permissions
       invoke 'wp:set_permissions'
     end
-
 
     ############################################################################
     ## Setup WordPress on the remote environment
@@ -100,7 +99,6 @@ namespace :wp do
         end
       end
     end
-
 
     ############################################################################
     ## Setup WordPress on the local environment
@@ -154,7 +152,6 @@ namespace :wp do
       end
     end
 
-
     ############################################################################
     ## Setup WordPress on both the local and remote environments
     ############################################################################
@@ -175,7 +172,6 @@ namespace :wp do
   end
 
   namespace :core do
-
     ############################################################################
     ## Update WordPress submodule to latest version
     ############################################################################
