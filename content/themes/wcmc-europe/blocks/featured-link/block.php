@@ -8,8 +8,8 @@
 
 $text = block_field('text', false);
 
-$link_text = block_field('link-text', false);
-$link_url = block_field('link-url', false);
+$link_text = block_field('linkText', false);
+$link_url = block_field('linkURL', false);
 $external = block_field('external', false);
 
 $image = block_field('image', false);
