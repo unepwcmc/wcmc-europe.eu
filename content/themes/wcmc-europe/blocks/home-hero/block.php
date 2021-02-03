@@ -9,12 +9,12 @@
 // Variables
 $title = block_field('title', false);
 $text = block_field('text', false);
-$dark_text = block_field('dark-text', false);
+$dark_text = block_field('darkText', false);
 
-$image = block_field('background-image', false);
+$image = block_field('backgroundImageID', false);
 $image_url = wp_get_attachment_image_src($image, 'full-size')[0];
 
-$overlay_opacity = block_field('overlay-opacity', false);
+$overlay_opacity = block_field('overlayOpacity', false);
 ?>
 
 <div class="home-hero<?php if ($dark_text) echo ' home-hero--dark'; ?>" <?php if ($background_colour) echo 'style="background-color: ' . $background_colour . ';"'; ?>>
