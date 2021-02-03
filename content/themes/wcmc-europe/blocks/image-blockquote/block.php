@@ -8,10 +8,10 @@
 
 $text = block_field('text', false);
 
-$overlay_opacity = block_field('overlayOpacity', false);
+$overlay_opacity = block_field('overlay-opacity', false);
 
-$image = block_field('backgroundImageID', false);
-$image_url = wp_get_attachment_image_src($image, 'fullSize')[0];
+$image = block_field('background-image', false);
+$image_url = wp_get_attachment_image_src($image, 'full-size')[0];
 ?>
 
 <div class="image-blockquote">
