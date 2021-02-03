@@ -10,10 +10,10 @@ $text = block_field('text', false);
 
 $link_text = block_field('link-text', false);
 $link_url = block_field('link-url', false);
-$external = block_field('external', false);
 
-$image = block_field('image', false);
+$image = block_field('image-id', false);
 $image_url = wp_get_attachment_image_src($image, 'full-size')[0];
+
 ?>
 
 <div class="featured-link">
