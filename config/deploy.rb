@@ -39,7 +39,7 @@ set :ssh_options, forward_agent: true
 ################################################################################
 
 set :linked_files, %w(wp-config.php .htaccess robots.txt index.php content/themes/wcmc-europe/.env)
-set :linked_dirs, %w(content/uploads content/plugins)
+set :linked_dirs, %w(content/uploads content/plugins content/languages)
 
 
 set :file_permissions_paths, ["content"]

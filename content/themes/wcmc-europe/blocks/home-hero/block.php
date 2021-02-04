@@ -1,19 +1,21 @@
 <?php
-  /*
-    Home Hero Block
-    Created by UNEP-WCMC
-    With Block Lab for Gutenberg - https://getblocklab.com/
-  */
 
-  // Variables
-  $title = block_field( 'title', false );
-  $text = block_field( 'text', false );
-  $dark_text = block_field( 'dark-text', false );
+/**
+ * Home Hero Block
+ * Created by UNEP-WCMC
+ * With Block Lab for Gutenberg - https://getblocklab.com/
+ */
 
-  $image = block_field( 'background-image', false );
-  $image_url = wp_get_attachment_image_src( $image, 'full-size' )[0];
+// Variables
+$title = block_field('title', false);
+$text = block_field('text', false);
+$dark_text = block_field('dark-text', false);
 
-  $overlay_opacity = block_field( 'overlay-opacity', false );
+$image = block_field('background-image-id', false);
+$image_url = wp_get_attachment_image_src($image, 'full-size')[0];
+
+$overlay_opacity = block_field('overlay-opacity', false);
+
 ?>
 
 <div class="home-hero<?php if ($dark_text) echo ' home-hero--dark'; ?>" <?php if ($background_colour) echo 'style="background-color: ' . $background_colour . ';"'; ?>>
@@ -25,7 +27,7 @@
       </div>
     </div>
   </div>
-  <?php if ($image_url): ?>
+  <?php if ($image_url) : ?>
     <img src="<?php echo $image_url; ?>" alt="<?php echo $title; ?>" class="home-hero__background-image">
   <?php endif; ?>
   <div class="home-hero__overlay" style="opacity: <?php echo $overlay_opacity; ?>;"></div>

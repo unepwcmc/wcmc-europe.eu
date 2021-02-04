@@ -58,71 +58,71 @@ const paths = {
 ******************************/
 
 // SCSS
-function styles() {
+function styles () {
   return src([
     `${paths.source}/scss/main.scss`
   ])
     .pipe(sourcemaps.init())
     .pipe(sass())
-    .pipe(postcss([ autoprefixer(), cssnano() ]))
+    .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`${paths.build}/css`))
-    .pipe(reload({stream: true}))
+    .pipe(reload({ stream: true }))
 }
 
-function ie11() {
+function ie11 () {
   return src([
     `${paths.source}/scss/ie.scss`
   ])
     .pipe(sourcemaps.init())
     .pipe(sass())
-    .pipe(postcss([ autoprefixer(), cssnano() ]))
+    .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(`${paths.build}/css`))
-    .pipe(reload({stream: true}))
+    .pipe(reload({ stream: true }))
 }
 
-function blockStyles() {
+function blockStyles () {
   return src([
     `${paths.blocks}/**/*.scss`
   ])
     .pipe(sass())
-    .pipe(postcss([ autoprefixer(), cssnano() ]))
+    .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(gulp.dest(function (file) {
       return file.base
     }))
-    .pipe(reload({stream: true}))
+    .pipe(reload({ stream: true }))
 }
 
 // Webpack
 
-function scripts() {
+function scripts () {
   return src([`${paths.source}/js/app.js`])
-    .pipe(webpackStream( require('./webpack.config.js'), webpack ))
+    .pipe(webpackStream(require('./webpack.config.js'), webpack))
     .on('error', swallowError)
     .pipe(gulp.dest(`${paths.build}/js`))
-    .pipe(reload({stream: true}))
+    .pipe(reload({ stream: true }))
 }
 
 // Cleanup
-function cleanupStyles() {
+function cleanupStyles () {
   // Simply execute del with the build folder path
   return del([`${paths.build}/css`])
 }
-function cleanupScripts() {
+function cleanupScripts () {
   // Simply execute del with the build folder path
   return del([`${paths.build}/js`])
 }
 
 // Watch
-function watch() {
+function watch () {
   browserSync.init({
     proxy: 'wcmceurope.local',
     ghostMode: {
-        clicks: false,
-        location: false,
-        forms: false,
-        scroll: false
+      clicks: false,
+      location: false,
+      forms: false,
+      scroll: false
     },
     injectChanges: true,
     logFileChanges: true,

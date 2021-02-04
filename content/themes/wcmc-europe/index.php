@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The main template file
  *
@@ -18,7 +19,7 @@ get_header(); ?>
 		<div class="lyt-Container_Body">
 			<!-- primary  -->
 			<section class="lyt-Primary">
-					<div class="lyt-Primary_Body">
+				<div class="lyt-Primary_Body">
 					<? get_template_part( 'template-parts/content/content', 'none' ); ?>
 				</div>
 			</section>
@@ -26,6 +27,6 @@ get_header(); ?>
 	</div>
 </div>
 
-<?php dynamic_sidebar( 'after-content' ); ?>
+<?php dynamic_sidebar('after-content'); ?>
 
 <?php get_footer();

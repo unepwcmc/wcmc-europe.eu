@@ -1,5 +1,6 @@
-namespace :uploads do
+# frozen_string_literal: true
 
+namespace :uploads do
   ##############################################################################
   ## Push any changed or new uploads from local to remote
   ##############################################################################
@@ -13,7 +14,6 @@ namespace :uploads do
     end
   end
 
-
   ##############################################################################
   ## Pull any changed or new uploads from remote to local
   ##############################################################################
@@ -26,5 +26,4 @@ namespace :uploads do
       end
     end
   end
-
 end

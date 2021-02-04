@@ -1,19 +1,19 @@
 <?php
-  /*
-    Featured Link Block
-    Created by UNEP-WCMC
-    With Genesis Custom Blocks for Gutenberg - https://wpengine.co.uk/genesis-custom-blocks/
-  */
 
-  // Variables
-  $text = block_field( 'text', false );
+/**
+ * Featured Link Block
+ * Created by UNEP-WCMC
+ * With Genesis Custom Blocks for Gutenberg - https://wpengine.co.uk/genesis-custom-blocks/
+ */
 
-  $link_text = block_field( 'link-text', false );
-  $link_url = block_field( 'link-url', false );
-  $external = block_field( 'external', false );
+$text = block_field('text', false);
 
-  $image = block_field( 'image', false );
-  $image_url = wp_get_attachment_image_src( $image, 'full-size' )[0];
+$link_text = block_field('link-text', false);
+$link_url = block_field('link-url', false);
+
+$image = block_field('image-id', false);
+$image_url = wp_get_attachment_image_src($image, 'full-size')[0];
+
 ?>
 
 <div class="featured-link">

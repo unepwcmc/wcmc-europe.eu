@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 namespace :cache do
   namespace :repo do
-
     ############################################################################
     ## Remove the cached repo folder from the server
     ############################################################################
     desc 'Remove the cached repo folder from the server'
     task :purge do
       on roles(:web) do
-
         # Get the path to the project
         repopath = fetch(:deploy_to)
 
@@ -18,6 +18,5 @@ namespace :cache do
         puts 'Cached repo folder removed from server.'
       end
     end
-
   end
 end
