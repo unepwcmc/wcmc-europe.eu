@@ -309,8 +309,25 @@ add_action(
 );
 
 
-/*-------------------------------------------------------------------------------------------------
-IMPORT ACF OPTIONS PAGE SETTINGS
-------------------------------------------------------------------------------------------------- */
-
+/**
+ * IMPORT ACF OPTIONS PAGE SETTINGS
+ */
 require_once('acf-options-page.php');
+
+
+/**
+ * OVERWRITE ERRORING FUNCTION IN WUXT REST
+ */
+remove_action('rest_api_init', 'wuxt_front_page_route');
+add_action('rest_api_init', 'wuxt_front_page_route_with_permission_callback', $priority = 10, $args = 0);
+
+function wuxt_front_page_route_with_permission_callback()
+{
+	register_rest_route('wuxt', '/v1/front-page', array(
+		'methods'  => 'GET',
+		'callback' => 'wuxt_get_front_page',
+		'permission_callback' => function () {
+			return current_user_can('manage_options');
+		},
+	));
+}
