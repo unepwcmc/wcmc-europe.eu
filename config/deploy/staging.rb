@@ -3,7 +3,7 @@
 ################################################################################
 
 # The Git branch this environment should be attached to.
-set :branch, 'main'
+set :branch, 'wordpress_5.7_upgrade'
 
 # The environment's name. To be used in commands and other references.
 set :stage, :staging
