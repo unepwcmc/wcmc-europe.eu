@@ -18,7 +18,7 @@ $overlay_opacity = block_field('overlay-opacity', false);
 
 ?>
 
-<div class="home-hero<?php if ($dark_text) echo ' home-hero--dark'; ?>" <?php if ($background_colour) echo 'style="background-color: ' . $background_colour . ';"'; ?>>
+<div class="home-hero<?php if ($dark_text) echo ' home-hero--dark'; ?>">
   <div class="home-hero__inner">
     <div class="home-hero__body">
       <div class="home-hero__content">

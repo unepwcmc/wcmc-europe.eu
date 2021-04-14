@@ -309,8 +309,53 @@ add_action(
 );
 
 
-/*-------------------------------------------------------------------------------------------------
-IMPORT ACF OPTIONS PAGE SETTINGS
-------------------------------------------------------------------------------------------------- */
-
+/**
+ * IMPORT ACF OPTIONS PAGE SETTINGS
+ */
 require_once('acf-options-page.php');
+
+
+/**
+ * OVERWRITE ERRORING FUNCTIONS IN "wuxt-headless-wp-api-extensions" PLUGIN
+ */
+remove_action('rest_api_init', 'wuxt_front_page_route');
+add_action('rest_api_init', 'wuxt_front_page_route_with_permission_callback', $priority = 10, $args = 0);
+
+function wuxt_front_page_route_with_permission_callback()
+{
+	register_rest_route('wuxt', '/v1/front-page', array(
+		'methods'  => 'GET',
+		'callback' => 'wuxt_get_front_page',
+		'permission_callback' => function () {
+			return '__return_true';
+		},
+	));
+}
+
+remove_action('rest_api_init', 'wuxt_route_menu');
+add_action('rest_api_init', 'wuxt_route_menu_with_permission_callback');
+
+function wuxt_route_menu_with_permission_callback()
+{
+	register_rest_route('wuxt', '/v1/menu', array(
+		'methods' => 'GET',
+		'callback' => 'wuxt_get_menu',
+		'permission_callback' => function () {
+			return '__return_true';
+		},
+	));
+}
+
+remove_action('rest_api_init', 'wuxt_slug_route');
+add_action('rest_api_init', 'wuxt_slug_route_with_permission_callback');
+
+function wuxt_slug_route_with_permission_callback()
+{
+	register_rest_route('wuxt', '/v1/slug/(?P<slug>\S+)', array(
+		'methods'  => 'GET',
+		'callback' => 'wuxt_get_slug',
+		'permission_callback' => function () {
+			return '__return_true';
+		},
+	));
+}
