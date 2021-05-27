@@ -20,7 +20,7 @@ $image_url = wp_get_attachment_image_src($image, 'full-size')[0];
   <div class="featured-link__columns">
     <div class="featured-link__column">
       <div class="featured-link__image-wrapper">
-        <img class="featured-link__image" src="<?php echo $image_url ?>" alt="">
+        <img class="featured-link__image" src="<?php echo $image_url; ?>" alt="<?php echo $text; ?>">
       </div>
     </div>
     <div class="featured-link__column">
