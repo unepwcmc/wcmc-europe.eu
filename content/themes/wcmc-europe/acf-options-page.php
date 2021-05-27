@@ -16,7 +16,7 @@ if (function_exists('acf_add_options_page')) {
 	));
 
 	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Site Contact Settings',
+		'page_title' 	=> 'Site Social Settings',
 		'menu_title'	=> 'Social',
 		'parent_slug'	=> 'site-general-settings',
 	));
