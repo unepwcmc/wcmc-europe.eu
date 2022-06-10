@@ -1,0 +1,86 @@
+@import "../../src/scss/utilities/variables";
+@import "../../src/scss/utilities/mixins";
+
+
+.carousel-full {
+  position: relative;
+}
+
+.carousel-full__cell {
+  padding-bottom: calc((2 / 3) * 100%);
+  width: 100%;
+
+  position: relative;
+}
+
+.carousel-full__content {
+  background-color: $color-white;
+  padding: 24px 24px 32px;
+  width: 100%;
+  max-width: calc((5 / 12) * 100%);
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.block-editor .editor-styles-wrapper h3.carousel-full__label {
+  @include font_small_text;
+  font-family: $font-body;
+  margin-top: 0;
+  margin-bottom: $item-padding-small;
+  text-transform: uppercase;
+}
+
+.block-editor .editor-styles-wrapper h4.carousel-full__title {
+  @include font_base_text;
+  font-family: $font-body;
+  font-weight: $fw-bold;
+  margin-top: 0;
+  margin-bottom: $item-padding-small;
+}
+
+.block-editor .editor-styles-wrapper p.carousel-full__link {
+  @include button_arrow;
+  margin: 0;
+
+  display: inline-block;
+}
+
+.block-editor__container img.carousel-full__background-image {
+  @include absolute_fill;
+  @include object_fit_cover;
+  z-index: 1;
+}
+
+.flickity-prev-next-button {
+  background-color: $color-primary;
+  border: 0;
+  border-radius: 0;
+  color: $color-white;
+  outline: none;
+  width: 48px;
+  height: 48px;
+
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  z-index: 4;
+
+  transform: none;
+  transition: background-color .3s ease;
+
+  &.previous {
+    transform: translateX(-100%);
+  }
+
+  &.next {
+    border-left: 2px solid rgba($color-white, 0.4);
+  }
+
+  &.previous,
+  &.next {
+    left: calc((5 / 12) * 100%);
+  }
+}

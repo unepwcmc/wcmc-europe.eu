@@ -310,6 +310,11 @@
 // Buttons
 //-------------------------------------------------
 
+@mixin button_reset {
+  appearance: none;
+  background-color: transparent;
+}
+
 @mixin button {
   appearance: none;
   border: 1px solid transparent;
@@ -401,6 +406,15 @@
   }
 }
 
+@mixin button_text {
+  @include button_reset;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition: background-color 0.3s ease-in-out, color 0.3s ease,
+    border-color 0.35s ease;
+}
+
 @mixin button_accent {
   @include button;
 
@@ -412,6 +426,33 @@
     color: $color-secondary;
     border-color: darken($color-accent, 20%);
     background-color: darken($color-accent, 20%);
+  }
+}
+
+@mixin button_arrow {
+  @include button_text;
+  @include font_small_text;
+  font-weight: $fw-bold;
+  padding-right: 1.125rem; // 18px
+
+  position: relative;
+
+  .icon-arrow {
+    color: $color-primary;
+    width: 0.75rem;
+
+    position: absolute;
+    top: 0.25rem;
+    right: 0;
+
+    transition: transform .3s ease;
+    will-change: transform;
+  }
+
+  &:hover {
+    .icon-arrow {
+      transform: translateX(0.125rem); // 2px
+    }
   }
 }
 
