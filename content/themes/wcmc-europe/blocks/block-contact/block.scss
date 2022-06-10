@@ -1,0 +1,13 @@
+@import "../../src/scss/utilities/variables";
+@import "../../src/scss/utilities/mixins";
+
+.form-contact {
+  background-color: $color-primary-dark;
+  padding: $spacer-large $spacer-medium;
+}
+
+ .block-editor .editor-styles-wrapper h2.form-contact__title {
+   @include font_heading-2;
+   color: $color-white;
+   margin: 0;
+ }
