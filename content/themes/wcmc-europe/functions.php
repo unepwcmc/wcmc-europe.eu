@@ -115,7 +115,6 @@ function custom_load_js()
 {
 	// Enqueue Javascript
 	if (!is_admin()) {
-		wp_enqueue_script('polyfill_js', 'https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise,fetch,Symbol,Array.prototype.@@iterator,Element.prototype.classList,Object.values,Object.entries,IntersectionObserver', '', '', true);
 		wp_enqueue_script('vendor_js', get_template_directory_uri() . '/dist/build/js/vendor.js', '', '', true);
 		wp_enqueue_script('theme_js', get_template_directory_uri() . '/dist/build/js/app.js', array('vendor_js'), '', true);
 	}
